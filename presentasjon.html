@@ -24,10 +24,12 @@
   ---
 
   # Hva er HTTP/2?
-  To standarder
+
+  To standarder:
   - Hypertext Transfer Protocol version 2 - RFC7540
   - HPACK - Header Compression for HTTP/2 - RFC7541
-  - Endrer ikke på semantikken i HTTP, bare måten det transporteres på
+
+  Endrer ikke på semantikken i fra HTTP/1, bare måten det transporteres på
 
   ---
 
@@ -49,20 +51,24 @@
 
   ---
 
-  background-image: url(images/streammessageframe.png)
-
-  ---
   # Binary framing layer (binært rammelag)
   - Rammene kan komme i forskjellig rekkefølge
-  - Flette rammer
-  - Multiplexing
+  - Tilhørende rammer settes sammen til en message
+
+  ---
+
+  # Multiplexing
     - HTTP/1 må man ha flere TCP koblinger for parallell lasting
       - Nettleserne har begrensning på 6 samtidige koblinger
 
   ---
 
+  background-image: url(images/streammessageframe.png)
+
+  ---
+
   # En enkel kobling
-  - De fleste HTTP overføringene er "short and bursty", mens TPC er optimalisert for langlevde store dataoverføringer.
+    - De fleste HTTP overføringene er "short and bursty", mens TPC er optimalisert for langlevde store dataoverføringer.
   - En kobling gir bedre utnyttelse av hver TCP kobling
   - Ganske mye mindre protokoll overhead
   - Spesielt bra ved HTTPS hvor handshakes er dyre
@@ -115,13 +121,16 @@
   #Hva med HTTP/1.x da?
     - Vil være rundt i alle fall ti år til
     - Vil etter hvert bli mer nedprioritering av HTTP/1 (ref. IE) til fordel for HTTP/2 optimalisering
-  - Støtte
-    - Oppgradering (TSL og det)
+
+  ---
+
+  background-image: url(images/browsersupport.png)
 
   ---
 
   # Applikasjonsutvilking
-    - Sammensetning av filer
+  Antipatterns i HTTP/2:
+    - Sammensetning av filer (app.js)
     - Domain sharding
     - Sprites (sammensetning av bilder)
 
