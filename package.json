@@ -1,0 +1,7 @@
+{
+  "name": "http2-lyntale",
+  "version": "1.0.0",
+  "dependencies": {
+    "remark-bekk": "^0.1.0"
+  }
+}
