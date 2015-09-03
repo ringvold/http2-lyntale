@@ -21,6 +21,10 @@
 
   04/09/2015
 
+  ???
+
+  For tekst kalibrering
+
   ---
 
   # Hva er HTTP/2?
@@ -33,29 +37,39 @@
 
   HTTP/2 != SPDY
 
-  ---
-
-  # Binary framing layer (binært rammelag)
-
-  Terminologi:
-    - Streams
-    - Message
-    - Frame
 
   ???
 
-  H2: Bryter ned protokollen kommunikasjonen til utveksling av binærkodede rammer som settes sammen til meldinger som hører til en bestemt strøm som multiplexes over en TCP kobling.
+  Kun server og client programvaren som påvirkes men bra å vite hvordan det funker
 
-  Streams:
-    - Bidireksjonel strøm av bytes i en etablert kobling
+  ---
+
+  class: cols three
+
+  # Binary framing layer (binært rammelag)
+
+  .col[
+    .circle.red.centered[Streams]
+    - bidireksjonal strøm av bytes i en etablert kobling
     - En eller flere messages.
+  ]
 
-  Message:
+  .col[
+    .circle.green.centered[Messages]
     - HTTP request eller response
+  ]
 
-  Frame:
+  .col[
+    .circle.yellow.centered[Frames]
     - Minste enhet for kommunikasjon
     - Headers, data/payload, og andre
+  ]
+
+  ???
+
+  HTTP/2 bryter ned protokollkommunikasjonen til utveksling av binærkodede rammer som settes sammen til meldinger som hører til en bestemt strøm som multiplexes over en TCP kobling.
+
+  Binærprotokoll: snakke om en dag vi har god tid
 
   ---
 
@@ -77,11 +91,13 @@
 
   # Multiplexing
 
-  - HTTP/1 må man ha flere TCP koblinger for parallell lasting
+  HTTP/1
+    - Må man ha flere TCP koblinger for parallell lasting
     - Nettleserne har begrensning på 6 samtidige koblinger
 
-  ???
+  HTTP/2: Alt på en kobling! Yay!
 
+  ???
 
 
   ---
@@ -90,7 +106,8 @@
 
   ???
 
-  Finnes en GOAWAY rammetype. :P
+  Andre rammetyper
+    - blant annet en GOAWAY rammetype. :P
 
   ---
 
@@ -130,12 +147,15 @@
 
   ---
 
-  # HPACK
+  # HPACK - Binær header komprimering
 
   - I HTTP/1 kan man komprimere innholdet, men headere er alltid ukomprimerte
   - Enkelte headere endrer seg så og si aldri, men vi sender det med på hvert request.
   - Det finnes eksempel på sider som på en sidelasting genererte 1mb(!) trafikk med bare ukomprimerte headere!
-  - Huffman-koding med statisk ordbok.
+
+  ???
+
+  Gjennomsnittlig: ca. 500–800 bytes
 
   ---
 
@@ -154,7 +174,7 @@
   # Hva med HTTP/1.x da?
 
   - Vil være rundt i alle fall ti år til
-  - Vil etter hvert bli mer nedprioritering av HTTP/1 (ref. IE) til fordel for HTTP/2 optimalisering
+  - Vil etter hvert bli mer nedprioritering av HTTP/1 til fordel for HTTP/2 optimalisering (ref. IE)
 
   ---
 
@@ -164,9 +184,11 @@
 
   I praksis: bare over TLS! FF og Chrome
 
+  Google, Twitter, Facebook og andre bruker det allerede
+
   ---
 
-  # Applikasjonsutvilking
+  # Applikasjonsutvikling
 
   Antipatterns i HTTP/2:
   - Sammensetning av filer (app.js)
