@@ -35,21 +35,16 @@
 
   ---
 
-  class: middle center
-
-  # Binary Framing Layer
-
-  Binært rammelag
-
-  ---
-
   # Binary framing layer (binært rammelag)
-    - Terminologi
-        - Streams
-        - Message
-        - Frame - Minste kommunikasjonsenhet
+
+  Terminologi:
+    - Streams
+    - Message
+    - Frame
 
   ???
+
+  H2: Bryter ned protokollen kommunikasjonen til utveksling av binærkodede rammer som settes sammen til meldinger som hører til en bestemt strøm som multiplexes over en TCP kobling.
 
   Streams:
     - Bidireksjonel strøm av bytes i en etablert kobling
@@ -61,10 +56,6 @@
   Frame:
     - Minste enhet for kommunikasjon
     - Headers, data/payload, og andre
-
-
-
-  Bryter ned protokollen kommunikasjonen til utveksling av binærkodede rammer som settes sammen til meldinger som hører til en bestemt strøm som multiplexes over en TCP kobling.
 
   ---
 
@@ -171,15 +162,24 @@
 
   ???
 
-  Firefox og Chrome: støtter bare over TLS!
+  I praksis: bare over TLS! FF og Chrome
 
   ---
 
   # Applikasjonsutvilking
+
   Antipatterns i HTTP/2:
-    - Sammensetning av filer (app.js)
-    - Domain sharding
-    - Sprites (sammensetning av bilder)
+  - Sammensetning av filer (app.js)
+  - Domain sharding
+  - Sprites (sammensetning av bilder)
+
+  ---
+
+  background-image: url(images/hpbncover.jpg)
+
+  .circle.red.top-right[
+    hpbn.co
+  ]
 
   ---
 
