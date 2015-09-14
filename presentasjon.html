@@ -15,15 +15,55 @@
 
   ## En lynkjapp introduksjon
 
-  Lyntalefagdag
+  Fagkveld
 
   Harald Ringvold
 
-  04/09/2015
+  15.09.2015
 
   ???
 
   For tekst kalibrering
+
+  ---
+
+  class: middle center
+
+  .card[
+    .picture[
+      ![Harald Ringvold](https://intern.bekk.no/Employees/ViewEmployeeImage.ashx?thumbnail=true&thumbsize=500&employee=726)
+    ]
+    .name[Harald Ringvold]
+    .title[Konsulent]
+    .department[Technology]
+    .phone[979 89 642]
+    .email[harald.ringvold@bekk.no]
+  ]
+
+  ---
+
+  # Litt historie
+  - SPDY utviklet av Google for å prøve å fikse ytelsesproblemene med HTTP/1.x
+  - Fikk stor adopsjon av andre nettlesere
+  - HTTP working group så det at det tydeligvis var noe å jobbe med
+  - HTTP WG sendte ut CFP
+  - SPDY ble valg som startpunkt
+  - HTTP2 utvikling startert ca 2011
+  - Endringer har blitt gjort siden da: SPDY != HTTP/2
+
+  ???
+
+  SPDY annonsernt mid 2009
+
+  SPDY != HTTP/2. Men ikke så forskjellige. Hovedtrekkene er de samme.
+
+  ---
+
+  # Mål for HTTP/2
+  - Forbedre den oppfattede latency-en
+  - Gjøre noe med "head of line blocking»-problemet
+  - Ikke kreve flere TCP koblinger
+  - Beholde semantikken fra HTTP/1.1
 
   ---
 
@@ -35,9 +75,6 @@
 
   Endrer ikke på semantikken i fra HTTP/1, bare måten det transporteres på
 
-  HTTP/2 != SPDY
-
-
   ???
 
   Kun server og client programvaren som påvirkes men bra å vite hvordan det funker
@@ -48,26 +85,35 @@
 
   # Binary framing layer (binært rammelag)
 
+  ???
+
+  HTTP/2 bryter ned protokollkommunikasjonen til utveksling av binærkodede rammer som settes sammen til meldinger som hører til en bestemt strøm som multiplexes over en TCP kobling.
+
+
+  --
+
   .col[
     .circle.red.centered[Streams]
     - bidireksjonal strøm av bytes i en etablert kobling
-    - En eller flere messages.
+    - En eller flere meldinger.
   ]
+
+  --
 
   .col[
     .circle.green.centered[Messages]
     - HTTP request eller response
   ]
 
+  --
+
   .col[
     .circle.yellow.centered[Frames]
     - Minste enhet for kommunikasjon
-    - Headers, data/payload, og andre
+    - Headers, data/payload og andre
   ]
 
   ???
-
-  HTTP/2 bryter ned protokollkommunikasjonen til utveksling av binærkodede rammer som settes sammen til meldinger som hører til en bestemt strøm som multiplexes over en TCP kobling.
 
   Binærprotokoll: snakke om en dag vi har god tid
 
@@ -89,6 +135,15 @@
 
   ---
 
+  background-image: url(images/streammessageframe.png)
+
+  ???
+
+  Andre rammetyper
+    - blant annet en GOAWAY rammetype. :P
+
+  ---
+
   # Multiplexing
 
   HTTP/1
@@ -98,16 +153,6 @@
   HTTP/2: Alt på en kobling! Yay!
 
   ???
-
-
-  ---
-
-  background-image: url(images/streammessageframe.png)
-
-  ???
-
-  Andre rammetyper
-    - blant annet en GOAWAY rammetype. :P
 
   ---
 
@@ -125,7 +170,7 @@
 
   - Uttrykke at man ønsker noen ressurser før andre
   - Uttrykker preferanse, ikke krav
-  - De viktigste elementene for å få rendret siden: html filen og css viktigst, bildene ikke så viktige.
+  - De viktigste elementene for å få rendret siden: html, javascript og css viktigst, andre ressurser ikke så viktige
 
   ---
 
@@ -133,14 +178,16 @@
 
   - For å forhindre at mottaker blir overbelastet
   - Stoppe og gjennoppta
-  - Få litt av et bilde, stoppe, laste andre ting, laste resten av bildet til slutt
-  - Hopp-til-hopp, ikke ende-til-ende
+  - Viktig da man ikke kan falle tilbake på TCPs mekanismer
 
   ---
 
   # Server push
 
   - HTTP/1: 1-til-1 req/resp.
+
+  --
+
   - HTTP/2: kan sende filene den vet du trenger
     - Eks: GET about.html: Send css, javascript, bilder m.m.
   - Etterhvert: pushe cache invalidering
@@ -149,9 +196,16 @@
 
   # HPACK - Binær header komprimering
 
-  - I HTTP/1 kan man komprimere innholdet, men headere er alltid ukomprimerte
-  - Enkelte headere endrer seg så og si aldri, men vi sender det med på hvert request.
+  HTTP/1:
+
+  - Kan komprimere innholdet, men headere er alltid ukomprimerte
+  - I mange request er headerne mye større enn payloaden
+  - Enkelte headere endrer seg så og si aldri, men vi sender det med på hvert request
   - Det finnes eksempel på sider som på en sidelasting genererte 1mb(!) trafikk med bare ukomprimerte headere!
+
+  HTTP/2:
+
+  - Send fulle headere kun en gang
 
   ???
 
@@ -173,7 +227,7 @@
 
   # Hva med HTTP/1.x da?
 
-  - Vil være rundt i alle fall ti år til
+  - Vil være rundt i mange år til
   - Vil etter hvert bli mer nedprioritering av HTTP/1 til fordel for HTTP/2 optimalisering (ref. IE)
 
   ---
@@ -184,16 +238,25 @@
 
   I praksis: bare over TLS! FF og Chrome
 
-  Google, Twitter, Facebook og andre bruker det allerede
+  Chrome faser ut SPDY tidlig 2016
+
+  Google, Twitter, Facebook og andre bruker det allerede HTTP/2
+
+  Liste over støttede servere på HTTP/2 wikien på github
 
   ---
 
   # Applikasjonsutvikling
 
-  Antipatterns i HTTP/2:
+  Unngå i HTTP/2:
   - Sammensetning av filer (app.js)
   - Domain sharding
   - Sprites (sammensetning av bilder)
+  - Inlining
+
+  Ikke lenger klartekst
+  - Avhengige av verktøy for å debugge
+
 
   ---
 
