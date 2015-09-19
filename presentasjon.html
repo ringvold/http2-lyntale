@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
   <title>HTTP/2</title>
   <link href="node_modules/remark-bekk/dist/bekk.css" type="text/css" rel="stylesheet">
   <script src="node_modules/remark-bekk/vendor/remark-0.11.0.min.js" type="text/javascript"></script>
@@ -81,9 +82,17 @@
 
   ---
 
+  class: middle center
+
+  # Binary framing layer
+
+  Binært rammelag
+
+  ---
+
   class: cols three
 
-  # Binary framing layer (binært rammelag)
+  # Binary framing layer
 
   ???
 
@@ -94,7 +103,7 @@
 
   .col[
     .circle.red.centered[Streams]
-    - bidireksjonal strøm av bytes i en etablert kobling
+    - Bidireksjonal strøm av bytes i en etablert kobling
     - En eller flere meldinger.
   ]
 
@@ -127,7 +136,7 @@
 
   ---
 
-  # Binary framing layer (binært rammelag)
+  # Binary framing layer
 
   - Binær fastlengde header på 9 bytes
   - Rammene kan komme i forskjellig rekkefølge
@@ -163,6 +172,10 @@
   - Mye mindre protokoll overhead
   - Spesielt bra ved HTTPS hvor handshakes er dyre
   - For ikke å snakke om mobil! Oh, the latency!
+
+  ---
+
+  background-image: url(images/latencyvsbandwith.png)
 
   ---
 
