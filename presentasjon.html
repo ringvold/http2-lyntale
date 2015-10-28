@@ -16,11 +16,11 @@
 
   ## En lynkjapp introduksjon
 
-  Fagkveld
+  Dagen@IFI
 
   Harald Ringvold
 
-  15.09.2015
+  29.10.2015
 
   ???
 
@@ -37,7 +37,7 @@
     .name[Harald Ringvold]
     .title[Konsulent]
     .department[Technology]
-    .phone[979 89 642]
+    .phone[97 98 96 42]
     .email[harald.ringvold@bekk.no]
   ]
 
@@ -66,6 +66,9 @@
   - Ikke kreve flere TCP koblinger
   - Beholde semantikken fra HTTP/1.1
 
+  ???
+  HOL blocking: TCP - pakker må komme i riktig rekkefølge:
+  Droppes en pakke, må alle pakkene som kommer etter vente på den som mangler.
   ---
 
   # Hva er HTTP/2?
@@ -159,13 +162,15 @@
     - Må man ha flere TCP koblinger for parallell lasting
     - Nettleserne har begrensning på 6 samtidige koblinger
 
+  --
+
   HTTP/2: Alt på en kobling! Yay!
 
   ???
 
   ---
 
-  # En enkel kobling
+  # En kobling
 
   - De fleste HTTP overføringene er "short and bursty", mens TCP er optimalisert for langlevde store dataoverføringer.
   - En kobling gir bedre utnyttelse av hver TCP kobling
@@ -249,13 +254,17 @@
 
   ???
 
-  I praksis: bare over TLS! FF og Chrome
+  Norge: 70%
+
+  I praksis: bare over TLS! FF og Chrome. (IE støtte uten TLS)
 
   Chrome faser ut SPDY tidlig 2016
 
   Google, Twitter, Facebook og andre bruker det allerede HTTP/2
 
   Liste over støttede servere på HTTP/2 wikien på github
+
+  Apache 2.4.17, Nginx 1.9.5, IIS på Windows 10 (eller Server 2016)
 
   ---
 
@@ -276,7 +285,7 @@
   background-image: url(images/hpbncover.jpg)
 
   .circle.red.top-right[
-    hpbn.co
+    hpbn.co/http2
   ]
 
   ---
@@ -285,11 +294,13 @@
   - [Changelog #161: HTTP/2 with Ilya Grigorik](https://changelog.com/161/)
   - [HTTP/2 in one slide](https://docs.google.com/presentation/d/1r7QXGYOLCh4fcUq0jDdDwKJWNqWK1o4xMtYpKZCJYjM/present?slide=id.gfd0e3427_2_119)
   - [High Performance Browser Networking, Chapter 12 - Ilya Grigorik](http://chimera.labs.oreilly.com/books/1230000000545/ch12.html)
-  - [Nginx Alpha Patch HTTP/2](https://www.nginx.com/blog/early-alpha-patch-http2/)
+  - [Liste over HTTP/2 implementasjoner](https://github.com/http2/http2-spec/wiki/Implementations)
   - [Can I Use.. - HTTP/2 protocol support table](http://caniuse.com/#feat=http2)
   - [FAQ - HTTP/2 Official Wiki](https://http2.github.io/faq/)
   - [SPDY Head of Line blocking - Stackoverflow](http://stackoverflow.com/questions/25221954/spdy-head-of-line-blocking)
   - [Latency vs Bandwith impact on page load - Google's Ilya Grigorik on HTTP 2.0 - Slideshare](http://www.slideshare.net/heavybit/heavybit-presents-ilya-grigorik-on/11)
+  - [SPDY: An experimental protocol for a faster web](http://dev.chromium.org/spdy/spdy-whitepaper)
+  - [More Bandwidth Doesn’t Matter (much)](https://docs.google.com/a/chromium.org/viewer?a=v&pid=sites&srcid=Y2hyb21pdW0ub3JnfGRldnxneDoxMzcyOWI1N2I4YzI3NzE2)
 
   ---
 
@@ -297,6 +308,8 @@
 
   # TAKK!
   Harald Ringvold
+
+  ## bit.ly/http2-lyntale
 
 
 </textarea>
